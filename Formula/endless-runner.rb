@@ -13,6 +13,7 @@ class EndlessRunner < Formula
       # Install dependencies (if any) and copy the script to bin
       system "pip3", "install", "pygame" # Add any other dependencies as needed
       bin.install "endless-runner-stickman-sounds.py" => "endless-runner"
+      chmod "+x", bin/"endless-runner"
     end
   
     test do
