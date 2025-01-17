@@ -2,8 +2,8 @@ class EndlessRunner < Formula
     include Language::Python::Virtualenv
     desc "Endless Runner Game"
     homepage "https://github.com/chefgs/endless-runner"
-    url "https://github.com/chefgs/endless-runner/releases/download/release-v2.0.0/endless-runner.tz"
-    sha256 "c4acb9b713287f28d5a162854a3bd4607dd930c79e53a8cbff77e36f45017582"
+    url "https://github.com/chefgs/endless-runner/releases/download/release-v2.0.0/endless-runner.tar.gz"
+    sha256 "9b3528a10b0babed2b39f2e670e1f1b07c97ab9afdcccabd2328d78fe3cde55f"
 
     license "MIT"
 
