@@ -6,17 +6,21 @@ class EndlessRunner < Formula
   sha256 "9b3528a10b0babed2b39f2e670e1f1b07c97ab9afdcccabd2328d78fe3cde55f"
   license "MIT"
   depends_on "python@3.11"
+  depends_on "py2app" => :build
 
   def install
-    # Install dependencies (if any) and copy the script to bin
-    system "pip3", "install", "pygame" # Add any other dependencies as needed
-    libexec.install "endless-runner-stickman-sounds.py"
-    (bin/"endless-runner").write_env_script libexec/"endless-runner-stickman-sounds.py", PATH: "#{Formula["python@3.11"].opt_bin}:$PATH"
-    chmod "+x", libexec/"endless-runner-stickman-sounds.py"
+    # Install dependencies
+    system "pip3", "install", "pygame"
+
+    # Build the application bundle
+    system "python3", "setup.py", "py2app"
+
+    # Install the application bundle
+    prefix.install "dist/endless-runner-stickman-sounds.app"
   end
 
   test do
-    # Verify that the installed script works
-    assert_match "Usage", shell_output("#{bin}/endless-runner --help", 2)
+    # Verify that the application bundle exists
+    assert_predicate prefix/"endless-runner-stickman-sounds.app", :exist?
   end
 end
